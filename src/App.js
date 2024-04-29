@@ -6,6 +6,7 @@ import Form from "./components/Form";
 export default function App() {
   const [showPopup, setShowPopup] = useState(false);
   const [employees, setEmployees] = useState([]);
+  const [selectedEmployee, setSelectedEmployee] = useState(null);
   const [editEmployee, setEditEmployee] = useState(null);
 
   useEffect(() => {
@@ -20,6 +21,7 @@ export default function App() {
     setEditEmployee(employee);
   };
 
+  console.log("selectedEmployee", selectedEmployee);
   return (
     <>
       <div className="flex justify-end pr-14 mt-4">
@@ -32,17 +34,18 @@ export default function App() {
         </button>
       </div>
       <div className="text-3xl font- border-2 flex w-full m-auto p-4">
-        <div className="h-screen border w-3/4 p-4">
+        <div className="h-screen border w-1/2 p-4">
           <List
             employees={employees}
             setEmployees={setEmployees}
             editOpenPopUp={editOpenPopUp}
+            setSelectedEmployee={setSelectedEmployee}
           />
         </div>
 
-        {/* <div className="h-screen border w-1/2 p-4">
-          <Profile />
-        </div> */}
+        <div className="h-screen border w-1/2 p-4">
+          <Profile selectedEmployee={selectedEmployee} />
+        </div>
       </div>
 
       {showPopup && (

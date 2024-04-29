@@ -1,29 +1,20 @@
-import { useState, useEffect, useRef } from "react";
 import { MdOutlineEdit } from "react-icons/md";
 import { MdDelete } from "react-icons/md";
 import MaleAvatar from "../images/man.png";
 import FemaleAvatar from "../images/girl.png";
-import Confirmation from "./Confirmation";
 import { confirmAlert } from "react-confirm-alert";
 import "react-confirm-alert/src/react-confirm-alert.css";
 
 const List = (props) => {
-  const { employees, setEmployees, editOpenPopUp } = props;
+  const { employees, setEmployees, editOpenPopUp, setSelectedEmployee } = props;
 
   const Deletehandler = (employee) => {
     const filteredEmployees = employees.filter((emp) => emp.id !== employee.id);
-
-    // store in local storage
     localStorage.setItem("employees", JSON.stringify(filteredEmployees));
-
-    // update the state
     setEmployees(filteredEmployees);
-
-    console.log("Deletehandler");
   };
 
   const EditHandler = (employee) => {
-    console.log("EditHandler");
     editOpenPopUp(employee);
   };
 
@@ -55,6 +46,7 @@ const List = (props) => {
                     clip-rule="evenodd"
                   ></path>
                 </svg>
+
                 <span className="sr-only">Close modal</span>
               </button>
               <svg
@@ -103,7 +95,7 @@ const List = (props) => {
   return (
     <>
       <div>
-        <div className="overflow-hidden rounded-lg  shadow-md m-5">
+        <div className="overflow-hidden rounded-lg shadow-md m-5">
           {employees.length > 0 && (
             <table className="w-full border-collapse bg-white text-left text-sm text-gray-500">
               <thead className="bg-gray-300">
@@ -114,12 +106,7 @@ const List = (props) => {
                   >
                     Name
                   </th>
-                  <th
-                    scope="col"
-                    className="px-6 py-4 font-medium text-gray-900"
-                  >
-                    DOB
-                  </th>
+
                   <th
                     scope="col"
                     className="px-6 py-4 font-medium text-gray-900"
@@ -140,7 +127,10 @@ const List = (props) => {
               </thead>
               <tbody className="divide-y divide-gray-100 border-t border-gray-100">
                 {employees.map((employee, index) => (
-                  <tr className="hover:bg-gray-50 cursor-pointer">
+                  <tr
+                    className="hover:bg-gray-50 cursor-pointer"
+                    onClick={() => setSelectedEmployee(employee)}
+                  >
                     <th className="flex gap-3 px-6 py-4 font-normal text-gray-900">
                       <div className="relative h-10 w-10">
                         <img
@@ -163,12 +153,12 @@ const List = (props) => {
                         <div className="text-gray-400">{employee.email}</div>
                       </div>
                     </th>
-                    <td className="px-6 py-4">
+                    {/* <td className="px-6 py-4">
                       <span className="inline-flex items-center gap-1 rounded-full bg-green-50 px-2 py-1 text-xs font-semibold text-green-600">
                         <span className="h-1.5 w-1.5 rounded-full bg-green-600"></span>
                         {employee.dob}
                       </span>
-                    </td>
+                    </td> */}
                     <td className="px-6 py-4">{employee.phone}</td>
                     <td className="px-6 py-4">
                       <div className="flex justify-end gap-4">
