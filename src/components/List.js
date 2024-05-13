@@ -8,7 +8,7 @@ import "react-confirm-alert/src/react-confirm-alert.css";
 const List = (props) => {
   const { employees, setEmployees, editOpenPopUp, setSelectedEmployee } = props;
 
-  const Deletehandler = (employee) => {
+  const deleteHandler = (employee) => {
     const filteredEmployees = employees.filter((emp) => emp.id !== employee.id);
     localStorage.setItem("employees", JSON.stringify(filteredEmployees));
     setEmployees(filteredEmployees);
@@ -76,7 +76,7 @@ const List = (props) => {
                 </button>
                 <button
                   onClick={() => {
-                    Deletehandler(employee);
+                    deleteHandler(employee);
                     onClose();
                   }}
                   type="submit"
@@ -130,6 +130,7 @@ const List = (props) => {
                   <tr
                     className="hover:bg-gray-50 cursor-pointer"
                     onClick={() => setSelectedEmployee(employee)}
+                    key={employee?.email + index}
                   >
                     <th className="flex gap-3 px-6 py-4 font-normal text-gray-900">
                       <div className="relative h-10 w-10">

@@ -3,8 +3,6 @@ import { useEffect, useState } from "react";
 import React from "react";
 import shortid from "shortid";
 
-
-
 const Form = (props) => {
   const {
     setShowPopup,
@@ -84,8 +82,6 @@ const Form = (props) => {
     setShowPopup(false);
   };
 
-  console.log("formData", formData);
-
   const validator = () => {
     if (!formData.name || !formData.email || !formData.dob || !formData.phone) {
       return true;
@@ -108,15 +104,11 @@ const Form = (props) => {
       return employee;
     });
 
-    console.log("updatedEmployees", updatedEmployees);
-
     localStorage.setItem("employees", JSON.stringify(updatedEmployees));
     setEmployees(updatedEmployees);
     setShowPopup(false);
     setEditEmployee(null);
   };
-
-  
 
   return (
     <div className="fixed top-0 left-0 w-full h-full flex justify-center items-center bg-gray-800 bg-opacity-50 animate-slideIn">
@@ -132,7 +124,7 @@ const Form = (props) => {
                 setShowPopup(false);
                 setEditEmployee(null);
               }}
-              className="text-red-700 bold cursor-pointer hover:text-red-500 h-6 w-6 fill-current text-red-500"
+              className="bold cursor-pointer hover:text-red-500 h-6 w-6 fill-current text-red-500"
             />
           </div>
           <h3>
@@ -195,12 +187,12 @@ const Form = (props) => {
                   <input
                     id="bordered-radio-1"
                     type="radio"
-                    checked={formData.gender === "male"}
+                    defaultChecked={formData.gender === "male"}
                     name="gender"
                     className="w-4 h-4 text-blue-600 outline-none bg-gray-100 border-gray-300 cursor-pointer"
                   />
                   <label
-                    for="bordered-radio-1"
+                    htmlFor="bordered-radio-1"
                     className="w-full py-4 ms-2 text-sm font-medium cursor-pointer"
                   >
                     Male
@@ -216,11 +208,11 @@ const Form = (props) => {
                     id="bordered-radio-2"
                     type="radio"
                     name="gender"
-                    checked={formData.gender === "female"}
+                    defaultChecked={formData.gender === "female"}
                     className="h-4 outline-none text-blue-600 bg-gray-100 border-gray-300 "
                   />
                   <label
-                    for="bordered-radio-2"
+                    htmlFor="bordered-radio-2"
                     className="w-full py-4 ms-2 text-sm font-medium cursor-pointer"
                   >
                     Female

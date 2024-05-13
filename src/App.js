@@ -21,7 +21,6 @@ export default function App() {
     setEditEmployee(employee);
   };
 
-  console.log("selectedEmployee", selectedEmployee);
   return (
     <>
       <div className="flex justify-end pr-14 mt-4">

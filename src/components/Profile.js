@@ -1,17 +1,9 @@
 import MaleAvatar from "../images/mann.png";
 import FemaleAvatar from "../images/woman.png";
-import { useEffect, useState } from "react";
 
 const Profile = (props) => {
   const { selectedEmployee } = props;
 
-  const [selectedState, setSelectedState] = useState(null);
-
-  useEffect(() => {
-    setSelectedState(selectedEmployee);
-  }, [selectedEmployee]);
-
-  console.log("wwwww", selectedEmployee);
   return (
     <>
       {selectedEmployee === null ? (
@@ -19,12 +11,12 @@ const Profile = (props) => {
           No Employee Selected
         </div>
       ) : (
-        <section class="bg-blueGray-50">
-          <div class="w-full  px-4 mx-auto">
-            <div class="flex flex-col break-words bg-white w-full mb-6 shadow-xl rounded-lg ">
-              <div class="px-6">
-                <div class="flex  justify-center">
-                  <div class="w-full flex justify-center">
+        <section className="bg-blueGray-50">
+          <div className="w-full  px-4 mx-auto">
+            <div className="flex flex-col break-words bg-white w-full mb-6 shadow-xl rounded-lg ">
+              <div className="px-6">
+                <div className="flex  justify-center">
+                  <div className="w-full flex justify-center">
                     <div className="w-40">
                       <img
                         alt="profile"
@@ -35,34 +27,34 @@ const Profile = (props) => {
                             ? MaleAvatar
                             : FemaleAvatar
                         }
-                        class="shadow-xl rounded-full h-auto align-middle border-none"
+                        className="shadow-xl rounded-full h-auto align-middle border-none"
                       />
                     </div>
                   </div>
                 </div>
 
-                <div class="my-4 m-10  border-t border-blueGray-200 text-center"></div>
+                <div className="my-4 m-10  border-t border-blueGray-200 text-center"></div>
 
-                <div class="text-center my-4">
-                  <h3 class="text-xl font-semibold leading-normal text-blueGray-700 mb-2">
+                <div className="text-center my-4">
+                  <h3 className="text-xl font-semibold leading-normal text-blueGray-700 mb-2">
                     {selectedEmployee?.name} {/*  get age here suing dob */}(
                     {new Date().getFullYear() -
                       new Date(selectedEmployee?.dob).getFullYear()}
                     )
                   </h3>
-                  <div class="text-sm leading-normal mt-0 mb-2 text-blueGray-400 font-bold uppercase">
-                    <i class="fas fa-map-marker-alt mr-2 text-blueGray-400"></i>
+                  <div className="text-sm leading-normal mt-0 mb-2 text-blueGray-400 font-bold uppercase">
+                    <i className="fas fa-map-marker-alt mr-2 text-blueGray-400"></i>
                     {selectedEmployee?.email}
                   </div>
 
-                  <p class="text-base leading-relaxed  mt-0 text-blueGray-400 font-bold uppercase">
+                  <p className="text-base leading-relaxed  mt-0 text-blueGray-400 font-bold uppercase">
                     DOB: {selectedEmployee?.dob}
                   </p>
-                  <p class="text-base leading-relaxed  mt-0 text-blueGray-400 font-bold uppercase">
+                  <p className="text-base leading-relaxed  mt-0 text-blueGray-400 font-bold uppercase">
                     Gender: {selectedEmployee?.gender}
                   </p>
 
-                  <p class="text-base leading-relaxed  mt-0 text-blueGray-400 font-bold uppercase">
+                  <p className="text-base leading-relaxed  mt-0 text-blueGray-400 font-bold uppercase">
                     Mobile: {selectedEmployee?.phone}
                   </p>
                 </div>
